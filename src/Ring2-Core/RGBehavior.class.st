@@ -477,6 +477,17 @@ RGBehavior >> extensions [
 	^ self localMethods select: [ :each | each package ~= self package ]
 ]
 
+{ #category : #'queries - protocols' }
+RGBehavior >> finalSuperclass [ 
+	self superclass 
+		ifNil: [ ^ nil ]
+		ifNotNil: [ | mySuperclass | 
+			mySuperclass := self superclass.
+			mySuperclass superclass 
+				ifNil:[ ^ mySuperclass ]
+				ifNotNil: [ ^ mySuperclass finalSuperclass ] ]
+]
+
 { #category : #testing }
 RGBehavior >> hasComment [
 
