@@ -562,6 +562,12 @@ RGBehavior >> initializeUnresolved [
 
 ]
 
+{ #category : #'dictionary-instance-variables' }
+RGBehavior >> instVarIndexFor: aString ifAbsent: aBlockClosure [
+	self haltIf: [ aString = 'key' ]. 
+	^ self allInstVarNames indexOf: aString ifAbsent: aBlockClosure
+]
+
 { #category : #testing }
 RGBehavior >> isBehavior [
 
