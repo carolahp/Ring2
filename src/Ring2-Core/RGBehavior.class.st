@@ -519,6 +519,11 @@ RGBehavior >> includesSelector: aString [
 	^ self selectors includes: aString
 ]
 
+{ #category : #testing }
+RGBehavior >> includesSharedPoolNamed: aString [ 
+	^ false
+]
+
 { #category : #'testing class hierarchy' }
 RGBehavior >> inheritsFrom: aClass [ 
 	"Answer whether the argument, aClass, is on the receiver's superclass 
@@ -564,7 +569,7 @@ RGBehavior >> initializeUnresolved [
 
 { #category : #'dictionary-instance-variables' }
 RGBehavior >> instVarIndexFor: aString ifAbsent: aBlockClosure [
-	self haltIf: [ aString = 'key' ]. 
+	"self haltIf: [ aString = 'key' ]. "
 	^ self allInstVarNames indexOf: aString ifAbsent: aBlockClosure
 ]
 
