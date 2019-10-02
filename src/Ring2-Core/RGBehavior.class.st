@@ -477,6 +477,17 @@ RGBehavior >> extensions [
 	^ self localMethods select: [ :each | each package ~= self package ]
 ]
 
+{ #category : #'queries - protocols' }
+RGBehavior >> finalSuperclass [ 
+	self superclass 
+		ifNil: [ ^ nil ]
+		ifNotNil: [ | mySuperclass | 
+			mySuperclass := self superclass.
+			mySuperclass superclass 
+				ifNil:[ ^ mySuperclass ]
+				ifNotNil: [ ^ mySuperclass finalSuperclass ] ]
+]
+
 { #category : #testing }
 RGBehavior >> hasComment [
 
@@ -506,6 +517,11 @@ RGBehavior >> hasTraitComposition [
 RGBehavior >> includesSelector: aString [
 
 	^ self selectors includes: aString
+]
+
+{ #category : #testing }
+RGBehavior >> includesSharedPoolNamed: aString [ 
+	^ false
 ]
 
 { #category : #'testing class hierarchy' }
@@ -549,6 +565,12 @@ RGBehavior >> initializeUnresolved [
 	tagsForMethods := self unresolvedValue: self defaultTagsForMethods.	
 	tags := self unresolvedValue: self defaultTags.	
 
+]
+
+{ #category : #'dictionary-instance-variables' }
+RGBehavior >> instVarIndexFor: aString ifAbsent: aBlockClosure [
+	"self haltIf: [ aString = 'key' ]. "
+	^ self allInstVarNames indexOf: aString ifAbsent: aBlockClosure
 ]
 
 { #category : #testing }
