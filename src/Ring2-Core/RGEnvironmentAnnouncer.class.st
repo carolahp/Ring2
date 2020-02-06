@@ -117,7 +117,7 @@ RGEnvironmentAnnouncer >> methodRemoved: aMethod [
 
 	"TODO:"
 	self announce: (MethodRemoved methodRemoved: aMethod protocol: nil origin: aMethod parent).
-	"aMethod parent announceEnvironmentChanged"
+	aMethod parent announceEnvironmentChanged
 	
 ]
 
