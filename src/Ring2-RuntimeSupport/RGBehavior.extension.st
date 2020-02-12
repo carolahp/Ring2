@@ -75,7 +75,6 @@ RGBehavior >> compile: aString classified: aCategory notifying: aController [
 	newMethod sourceCode: aString.
 	aCategory ifNotNil: [ 
 		newMethod tagWith: aCategory ].
-	self announceEnvironmentChanged.
 	^ selector.
 
 ]
